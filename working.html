@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,"><title>Mad Beach Cantina | Working preview</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; color: #f3f1eb; background: #25292b; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: 100%; height: 100dvh; min-height: 300px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px clamp(14px, 3vw, 36px); background: #202426; border-bottom: 1px solid #ffffff1c; }
+    h1 { font-size: clamp(17px, 2.4vw, 24px); letter-spacing: -.025em; margin: 0; font-weight: 650; }
+    header p { margin: 3px 0 0; font-size: 13px; color: #c6cbc8; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    button, select { border: 1px solid #aeb8b04d; background: #303638; color: inherit; padding: 8px 12px; border-radius: 6px; font: inherit; font-size: 13px; white-space: nowrap; cursor: pointer; }
+    .version { color: #9fdbd4; align-self: center; padding: 8px 3px; font-size: 13px; }
+    button:hover, select:hover { background: #41494b; }
+    button:focus-visible, select:focus-visible { outline: 2px solid #e8bc80; outline-offset: 3px; }
+    button:disabled { opacity: .55; cursor: default; }
+    section { position: relative; overflow: hidden; background: radial-gradient(ellipse at 49% 41%, #767c7c 0%, #505659 50%, #303537 100%); touch-action: none; }
+    canvas { position: absolute; inset: 0; display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    #status { position: absolute; z-index: 1; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; pointer-events: none; }
+    #status[hidden] { display: none; }
+    footer { background: #202426; border-top: 1px solid #ffffff1c; text-align: center; padding: 10px 12px; font-size: 12px; color: #c6cbc8; }
+    @media (pointer: coarse) { .mouse { display: none; } }
+    @media (pointer: fine) { .touch { display: none; } }
+    @media (max-width: 470px) { header { flex-wrap: wrap; } }
+  </style>
+  <script type="importmap">
+    {"imports":{"three":"./three/build/three.module.js","three/addons/":"./three/examples/jsm/"}}
+  </script>
+  <script type="module" src="./viewer-working.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>Mad Beach Cantina</h1><p>Working preview · Not fully reviewed</p></div>
+      <nav aria-label="Camera views">
+        <a class="version" href="./">Published baseline</a>
+        <select id="inspect" aria-label="Inspect a join" disabled>
+          <option value="">Inspect a join</option>
+          <option value="bar_overhead">Red canopy from above</option>
+          <option value="bar_soffit">Red canopy from the aisle</option>
+          <option value="bar_service">Rear bar workstations</option>
+          <option value="deck_threshold">Deck pier at threshold</option>
+          <option value="terrace">Terrace stairwell</option>
+          <option value="arcade">Arcade fascia</option>
+          <option value="dining">Dining jambs and glazing</option>
+          <option value="drink">Drink station</option>
+          <option value="rack">Kitchen rack</option>
+          <option value="restroom">Restroom return</option>
+          <option value="marina_outer">Marina landing</option>
+          <option value="waterside">Waterside windows</option>
+          <option value="entry">Street entry</option>
+          <option value="bar">Bar glazing</option>
+          <option value="glasses">Hanging glasses</option>
+          <option value="kitchen">Kitchen walls</option>
+          <option value="deck">Deck underside</option>
+          <option value="marina">Marina exit</option>
+        </select>
+        <button type="button" id="reset" disabled>Reset view</button>
+        <button type="button" id="top" disabled>Top view</button>
+      </nav>
+    </header>
+    <section id="stage" aria-label="Interactive 3D view of Mad Beach Cantina">
+      <p id="status" role="status">Loading the 3D model...</p>
+    </section>
+    <footer>
+      <span class="mouse">Drag to rotate &middot; Scroll to zoom &middot; Right-drag to pan</span>
+      <span class="touch">Drag to rotate &middot; Pinch to zoom &middot; Two-finger drag to pan</span>
+    </footer>
+  </main>
+</body>
+</html>
+
+

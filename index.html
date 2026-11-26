@@ -14,6 +14,7 @@
     header p { margin: 3px 0 0; font-size: 13px; color: #c6cbc8; }
     nav { display: flex; flex-wrap: wrap; gap: 8px; }
     button, select { border: 1px solid #aeb8b04d; background: #303638; color: inherit; padding: 8px 12px; border-radius: 6px; font: inherit; font-size: 13px; white-space: nowrap; cursor: pointer; }
+    .version { color: #9fdbd4; align-self: center; padding: 8px 3px; font-size: 13px; }
     button:hover, select:hover { background: #41494b; }
     button:focus-visible, select:focus-visible { outline: 2px solid #e8bc80; outline-offset: 3px; }
     button:disabled { opacity: .55; cursor: default; }
@@ -37,6 +38,7 @@
     <header>
       <div><h1>Mad Beach Cantina</h1><p>Roof-off dollhouse</p></div>
       <nav aria-label="Camera views">
+        <a class="version" href="./working.html">Working preview</a>
         <select id="inspect" aria-label="Inspect a join" disabled>
           <option value="">Inspect a join</option>
           <option value="bar_overhead">Red canopy from above</option>
