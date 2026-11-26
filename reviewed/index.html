@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,"><title>Mad Beach Cantina | Reviewed parts</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#f3f1eb;background:#25292b}*{box-sizing:border-box}body{margin:0}main{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:430px}
+header,footer{background:#202426;padding:12px clamp(12px,3vw,34px)}header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}h1{margin:0;font-size:clamp(18px,3vw,25px)}p{margin:3px 0;font-size:13px;color:#c6cbc8}nav{display:flex;align-items:center;flex-wrap:wrap;gap:9px}a{color:#9fdbd4;font-size:13px;padding:4px}select,button{background:#323b3d;color:inherit;border:1px solid #78918b;border-radius:6px;padding:8px 10px;font:inherit;font-size:13px}button:disabled{opacity:.45}section{position:relative;overflow:hidden;touch-action:none;background:radial-gradient(ellipse at 50% 44%,#727979,#333b3d 82%)}canvas{position:absolute;inset:0;display:block;cursor:grab}canvas:active{cursor:grabbing}#status{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;pointer-events:none;z-index:1}#status[hidden]{display:none}footer{border-top:1px solid #ffffff20;font-size:13px}#part-title{margin:0;font-size:15px}#scope{line-height:1.35}
+</style>
+<script type="importmap">{"imports":{"three":"../three/build/three.module.js","three/addons/":"../three/examples/jsm/"}}</script>
+<script type="module" src="./viewer.js"></script>
+</head>
+<body><main>
+<header>
+<div><h1>Mad Beach Cantina · Reviewed parts</h1><p>Exact assets that passed six checks. Shown individually, not a verified full venue.</p></div>
+<nav aria-label="Versions and inspection">
+<a href="../">Published baseline</a><a href="../working.html">F12 working preview</a>
+<label for="part">Part</label><select id="part" disabled><option>Loading parts…</option></select>
+<button id="reset" type="button" disabled>Reset view</button></nav>
+</header>
+<section id="stage" aria-label="Interactive 3D part viewer"><p id="status" role="status">Loading reviewed parts…</p></section>
+<footer><strong id="part-title"></strong><p id="scope"></p><p>Drag to orbit · Scroll or pinch to zoom</p></footer>
+</main></body></html>

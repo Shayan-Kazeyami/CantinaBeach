@@ -1,0 +1,90 @@
+[
+  {
+    "id": "B-122",
+    "title": "Lower white exit return",
+    "scope": "Requires the corrected west-return assembly when installed.",
+    "bytes": 5708,
+    "sha256": "a0679a98d22efffb0d7471dfc560c66da83613d73b32ff904cb7b48fcf76e744",
+    "file": "parts/b-122.glb"
+  },
+  {
+    "id": "B-124",
+    "title": "Upper mint exit return",
+    "scope": "Requires the corrected west-return assembly when installed.",
+    "bytes": 2656,
+    "sha256": "74f8d808892ad1676a3f6650fa8e94456ad71804372ee231b060cd55b3cf5cc4",
+    "file": "parts/b-124.glb"
+  },
+  {
+    "id": "B-229",
+    "title": "West sliding-window jamb",
+    "scope": "Approved as an individual jamb; not the complete fitted window bank.",
+    "bytes": 15116,
+    "sha256": "b02610f406b8c23df5c5701b00c94ccd8653c4e56a2c694e97e5f7a84526bc53",
+    "file": "parts/b-229.glb"
+  },
+  {
+    "id": "B-230",
+    "title": "Center sliding-window jamb",
+    "scope": "Approved as an individual jamb; not the complete fitted window bank.",
+    "bytes": 28352,
+    "sha256": "aa0522f1affcd1aea1067e9b3ca0e9869a1689d4bb5c1d87500671c7cb80de5d",
+    "file": "parts/b-230.glb"
+  },
+  {
+    "id": "B-231",
+    "title": "East sliding-window jamb",
+    "scope": "Approved as an individual jamb; not the complete fitted window bank.",
+    "bytes": 17388,
+    "sha256": "d871fceae4dfcb8e444b196151ff73aa911b528049cc4beb0534acbbfeb15f83",
+    "file": "parts/b-231.glb"
+  },
+  {
+    "id": "B-121",
+    "title": "Marina threshold and warning strip",
+    "scope": "Installed geometry was checked only with the corrected brass seat and floor.",
+    "bytes": 75808,
+    "sha256": "84d841f2968f5d7de30b68cacac664d1f2efbbd52122e3ae6e817980f5d2edcc",
+    "file": "parts/b-121.glb"
+  },
+  {
+    "id": "B-011",
+    "title": "Blue marina door glass",
+    "scope": "The clear pane was checked with its exact companion frame.",
+    "bytes": 2368,
+    "sha256": "ef8d7ea5a9076c531056cd56f83eca94dc2a425129703280a6f1072a5320572f",
+    "file": "parts/b-011.glb"
+  },
+  {
+    "id": "B-013",
+    "title": "Blue marina upper rail and fasteners",
+    "scope": "Approved as an individual rail; overall door dimensions are separate.",
+    "bytes": 31660,
+    "sha256": "fc484012d780981b2a56f2ec37a3768cbdba9e88212128b49927e96a7520bde0",
+    "file": "parts/b-013.glb"
+  },
+  {
+    "id": "B-015",
+    "title": "Blue marina lock-side stile",
+    "scope": "Approved as an individual stile; adjoining door hardware is separate.",
+    "bytes": 11428,
+    "sha256": "6f3952a506a62daa49ef4f59266eab4ebcb5b1f152a67dbac798732ca9b1ba24",
+    "file": "parts/b-015.glb"
+  },
+  {
+    "id": "B-008",
+    "title": "BA\u00d1OS door lintel",
+    "scope": "Local moulding approved; site placement is not verified.",
+    "bytes": 7344,
+    "sha256": "0e104b9727233d3f4f3ac5f7ae5c8b105cb3e77d3fb5752ad0307b599c1d9196",
+    "file": "parts/b-008.glb"
+  },
+  {
+    "id": "B-001",
+    "title": "Printed bar fascia",
+    "scope": "Individual repeat and finish approved; adjoining header placement is separate.",
+    "bytes": 51920,
+    "sha256": "e6444ae89f904358a88b7cf2d5175e18e9debef4bf5ca790ca1c13c6bb2e8715",
+    "file": "parts/b-001.glb"
+  }
+]
