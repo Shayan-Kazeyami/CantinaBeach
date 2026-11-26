@@ -33,9 +33,15 @@ try {
   if(!entries.length)throw Error('No reviewed parts');
   const cache=new Map();
   let loaded,sequence=0,pose;
-  part.replaceChildren(...entries.map(e=>new Option(e.id+' · '+e.title,e.id)));
+  part.replaceChildren(new Option('All '+entries.length+' verified parts','all'),...entries.map(e=>new Option(e.id+' · '+e.title,e.id)));
   part.disabled=false;
-  const view=()=>{if(!pose)return;camera.position.copy(pose.position);controls.target.set(0,0,0);controls.update();render();};
+  const view=()=>{if(!pose)return;
+    const {center, direction, span, all}=pose;
+    const vertical=THREE.MathUtils.degToRad(camera.fov/2);
+    const fit=all? span*.57/Math.min(Math.sin(vertical), Math.sin(Math.atan(Math.tan(vertical)*camera.aspect))):span*(camera.aspect<.76?2.3:1.83);
+    controls.target.copy(center);camera.position.copy(center).addScaledVector(direction,fit);
+    controls.update();render();
+  };
   function guide(box,direction){
     const c=new THREE.Group(), size=box.getSize(new THREE.Vector3()), span=Math.max(size.x,size.y,size.z);
     const square=new THREE.PlaneGeometry(span/10,span/10);
@@ -49,12 +55,40 @@ try {
     }
     return c;
   }
+  const fetchPart=e=>{
+    if(!cache.has(e.id))cache.set(e.id,loader.loadAsync(new URL(e.file,import.meta.url).href).catch(error=>{cache.delete(e.id);throw error;}));
+    return cache.get(e.id);
+  };
   const load=async id=>{
+    if(!id||id==='all'){
+      const run=++sequence;part.value='all';status.textContent='Loading all '+entries.length+' verified parts…';status.hidden=false;reset.disabled=true;
+      try{
+        const gltfs=await Promise.all(entries.map(fetchPart));
+        if(run!==sequence)return;
+        const group=new THREE.Group();
+        for(const [i,g] of gltfs.entries()){
+          const instance=g.scene.clone(true);
+          const partBounds=new THREE.Box3().setFromObject(instance,true);
+          if(partBounds.isEmpty())throw Error(entries[i].id+' is empty');
+          instance.name=entries[i].id;group.add(instance);
+        }
+        const bounds=new THREE.Box3().setFromObject(group,true), center=bounds.getCenter(new THREE.Vector3());
+        const span=bounds.getSize(new THREE.Vector3()).length();
+        if(!Number.isFinite(span)||span<=0)throw Error('Scene bounds invalid');
+        if(loaded)scene.remove(loaded);loaded=group;scene.add(loaded);
+        pose={center,direction:new THREE.Vector3(.40,.82,1).normalize(),span,all:true};
+        camera.near=.004;camera.far=Math.max(100,span*40);camera.updateProjectionMatrix();
+        controls.minDistance=.14;controls.maxDistance=span*15;
+        q('part-title').textContent='All '+entries.length+' verified parts';
+        q('scope').textContent='Shown together at their exported positions. Only these parts are shown; their fit together and the rest of the venue are not verified.';
+        resize();view();status.hidden=true;reset.disabled=false;
+      }catch(error){if(run===sequence)fail(error);}
+      return;
+    }
     const e=entries.find(p=>p.id===id)??entries[0], run=++sequence;
     status.textContent='Loading '+e.title+'…';status.hidden=false;reset.disabled=true;part.value=e.id;
     try{
-      if(!cache.has(e.id))cache.set(e.id,loader.loadAsync(new URL(e.file,import.meta.url).href).catch(err=>{cache.delete(e.id);throw err;}));
-      const gltf=await cache.get(e.id);if(run!==sequence)return;
+      const gltf=await fetchPart(e);if(run!==sequence)return;
       if(loaded)scene.remove(loaded);
       const model=gltf.scene.clone(true), bounds=new THREE.Box3().setFromObject(model,true);
       const center=bounds.getCenter(new THREE.Vector3()), s=bounds.getSize(new THREE.Vector3());
@@ -65,13 +99,12 @@ try {
       scene.add(loaded);
       const isGlass=e.id==='B-011';
       const angle=direction.clone().add(new THREE.Vector3(direction.z*.30,isGlass?.03:.22,direction.x*.30)).normalize();
-      const dist=span*(camera.aspect<.76?2.3:1.83);
-      pose={position:angle.multiplyScalar(dist)};
+      pose={center:new THREE.Vector3(),direction:angle,span,all:false};
       camera.near=Math.max(.0002,span/2800);camera.far=Math.max(5,span*18);camera.updateProjectionMatrix();
       controls.minDistance=span*.22;controls.maxDistance=span*9;
       q('part-title').textContent=e.title;
       q('scope').textContent=e.scope+(isGlass?' Checkerboard is an inspection aid, not venue geometry.':'');
-      view();resize();status.hidden=true;reset.disabled=false;
+      resize();view();status.hidden=true;reset.disabled=false;
     }catch(err){if(run===sequence)fail(err);}
   };
   reset.addEventListener('click',view);
